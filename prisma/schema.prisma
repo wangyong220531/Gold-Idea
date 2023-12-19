@@ -1,0 +1,101 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Question {
+  id              Int           @id @default(autoincrement())
+  content         String
+  goal            String        @default("")
+  publisherId     Int
+  publisher       User          @relation("PublishQuestions", fields: [publisherId], references: [id])
+  comments        Comment[]
+  collections     Collections[]
+  attentions      Attentions[]
+  createTime      DateTime      @default(now())
+  updateTime      DateTime      @default(now()) @updatedAt
+  deleted         Boolean       @default(false)
+  deletedByUserId Int?
+  deletedBy       User?         @relation("DeleteQuestions", fields: [deletedByUserId], references: [id])
+}
+
+model Comment {
+  id              Int       @id @default(autoincrement())
+  content         String
+  publisherId     Int
+  publisher       User      @relation(fields: [publisherId], references: [id])
+  questionId      Int
+  question        Question  @relation(fields: [questionId], references: [id])
+  parentId        Int?
+  parent          Comment?  @relation("ChildComment", fields: [parentId], references: [id])
+  childComments   Comment[] @relation("ChildComment")
+  createTime      DateTime  @default(now())
+  updateTime      DateTime  @default(now()) @updatedAt
+  isPinned        Boolean   @default(false)
+  pinNote         String?
+  pinnedUserId    Int?
+  isPinnedBy      User?     @relation("PinnedRelations", fields: [pinnedUserId], references: [id])
+  isHonored       Boolean   @default(false)
+  honorNote       String?
+  honoredUserId   Int?
+  isHonoredBy     User?     @relation("HonoredRelations", fields: [honoredUserId], references: [id])
+  deleted         Boolean   @default(false)
+  deletedByUserId Int?
+  deletedBy       User?     @relation("DeleteComments", fields: [deletedByUserId], references: [id])
+}
+
+model User {
+  id              Int           @id @default(autoincrement())
+  avator          String?
+  userName        String
+  policeNo        String
+  phone           String
+  Question        Question[]    @relation("PublishQuestions")
+  comments        Comment[]
+  pinneds         Comment[]     @relation("PinnedRelations")
+  honors          Comment[]     @relation("HonoredRelations")
+  collections     Collections[]
+  attentions      Attentions[]
+  unitId          Int
+  unit            Unit?
+  deleteQuestions Question[]    @relation("DeleteQuestions")
+  deleteComments  Comment[]     @relation("DeleteComments")
+}
+
+model Unit {
+  unitId     Int      @id @default(autoincrement())
+  unitNo     String
+  unitName   String
+  userId     Int      @unique
+  user       User     @relation(fields: [userId], references: [id])
+  createTime DateTime @default(now())
+  updateTime DateTime @default(now()) @updatedAt
+}
+
+model Collections {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
+  questionId Int
+  question   Question @relation(fields: [questionId], references: [id])
+  createTime DateTime @default(now())
+  updateTime DateTime @default(now()) @updatedAt
+
+  @@unique([userId, questionId])
+}
+
+model Attentions {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
+  questionId Int
+  question   Question @relation(fields: [questionId], references: [id])
+  createTime DateTime @default(now())
+  updateTime DateTime @default(now()) @updatedAt
+
+  @@unique([userId, questionId])
+}

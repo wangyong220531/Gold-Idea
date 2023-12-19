@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background: rgb(229, 232, 232);
+}
+
+.h-drainage {
+    height: calc(100vh - 104px);
+}
+
+#nprogress .bar {
+    background: #1064ff !important;
+    height: 2px !important;
+}
