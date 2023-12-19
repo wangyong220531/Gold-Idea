@@ -10,8 +10,9 @@ import { Skeleton } from "antd"
 import LeftSideToolbar from "./leftSideToolbar"
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css';
-import { toHonorComment } from "../pages/api"
+import { DeleteComment, toHonorComment } from "../pages/api"
 import { useUser } from "../app/lib/userContext"
+import DeleteModal from "./deleteModal"
 
 export interface DetailMidProps {
     questionId: number
@@ -37,6 +38,8 @@ export default function DetailMid(props: DetailMidProps) {
     const [gotQuestion, setGotQuestion] = useState(false)
     const [questionEditOpen, setQuestionEditOpen] = useState(false)
     const { userInfo } = useUser()
+    const [delConfirmModalOpen, setDelConfirmModalOpen] = useState(false)
+    const [deleteCommentIdList, setDeleteCommentIdList] = useState<number[]>([])
 
     useEffect(() => {
         NProgress.done()
@@ -81,8 +84,16 @@ export default function DetailMid(props: DetailMidProps) {
         setModalOpen(true)
     }
 
-    function handleOnCommentDelete(id: number) {
-        alert(id)
+    function handleOnCommentDelete(idList: number[]) {
+        setDelConfirmModalOpen(true)
+        setDeleteCommentIdList(idList)
+    }
+
+    async function handleDelConfirm() {
+        const res = await DeleteComment(deleteCommentIdList, userInfo.id)
+        if (!res) return
+        setDelConfirmModalOpen(false)
+        await fetchQuestion()
     }
 
     return (
@@ -100,6 +111,7 @@ export default function DetailMid(props: DetailMidProps) {
             {question && <LeftSideToolbar questionId={question.id} collections={question.collections} onEditClick={() => setQuestionEditOpen(true)} />}
             <QuestionModal open={modalOpen} source={modalSource} onCloseModal={() => setModalOpen(false)} questionId={thisQuestionId} commentId={thisCommentId} honorStatus={thisHonorStatus} onFetchNewQuestionDetail={() => fetchQuestion()} />
             {question && <QuestionEditModal open={questionEditOpen} questionId={question.id} content={question.content} goal={question.goal} onCloseModal={() => setQuestionEditOpen(false)} onFetchNewQuestionDetail={() => fetchQuestion()} />}
+            <DeleteModal open={delConfirmModalOpen} onClose={() => setDelConfirmModalOpen(false)} onConfirm={handleDelConfirm} />
         </Fragment>
     )
 }

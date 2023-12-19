@@ -9,7 +9,7 @@ export interface DetailSecondSectionProps {
     onAddReplySucceed: () => void
     onTopClickSucceed: (questionId: number, id: number) => void
     onHonorClickSucceed: (questionId: number, id: number, honorStatus: boolean) => void
-    onCommentDelete: (id: number) => void
+    onCommentDelete: (idList: number[]) => void
 }
 
 export default function DetailSecondSection(props: DetailSecondSectionProps) {

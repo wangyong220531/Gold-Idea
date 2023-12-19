@@ -156,3 +156,16 @@ export async function editQuestion(questionId: number, content: string, goal: st
     const data = await res.json()
     return data
 }
+
+export async function DeleteComment(commentIdList: number[], userId: number) {
+    const res = await fetch("/api/deleteComment", {
+        method: "POST",
+        body: JSON.stringify({
+            commentIdList,
+            userId
+        })
+    })
+    if (res.status !== 200) throw new Error("删除评论出错！")
+    const data = await res.json()
+    return data
+}

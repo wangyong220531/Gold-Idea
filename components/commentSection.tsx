@@ -115,7 +115,7 @@ export interface CommentSectionProps extends Omit<CommentItem, "childComments"> 
     onAddReplySucceed: () => void
     onTopClick: (id: number) => void
     onHonorClick: (id: number, honorStatus: boolean) => void
-    onCommentDelete: (id: number) => void
+    onCommentDelete: (idList: number[]) => void
 }
 
 export function CommentSection(props: CommentSectionProps) {
@@ -146,8 +146,18 @@ export function CommentSection(props: CommentSectionProps) {
         onHonorClick(id, honorStatus)
     }
 
+    function handleCommentDelete() {
+        let arr: number[] = []
+        if (comment.childComments.length) {
+            arr = comment.childComments.map((childComment: CommentItem) => childComment.id).concat(id)
+            onCommentDelete(arr)
+            return
+        }
+        onCommentDelete(arr)
+    }
+
     function handleChildCommentDel(id: number) {
-        onCommentDelete(id)
+        onCommentDelete([id])
     }
 
     return (
@@ -189,7 +199,7 @@ export function CommentSection(props: CommentSectionProps) {
                             <div>回复</div>
                         </div>
                     }
-                    <div className="flex gap-x-2 items-center cursor-pointer" onClick={() => onCommentDelete(id)}>
+                    <div className="flex gap-x-2 items-center cursor-pointer" onClick={handleCommentDelete}>
                         <Image src={DeleteIcon} width={20} height={20} alt={"评论删除图标"} />
                         <div>删除</div>
                     </div>

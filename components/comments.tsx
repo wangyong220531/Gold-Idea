@@ -43,7 +43,7 @@ export interface CommentsProps {
     onAddReplySucceed: () => void
     onTopClick: (id: number) => void
     onHonorClick: (id: number, honorStatus: boolean) => void
-    onCommentDelete: (id: number) => void
+    onCommentDelete: (idList: number[]) => void
 }
 
 export default function Comments(props: CommentsProps) {
