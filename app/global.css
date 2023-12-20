@@ -10,6 +10,17 @@ body {
     height: calc(100vh - 104px);
 }
 
+.text-align-last-justify {
+    display: block;
+    text-align-last: justify;
+}
+
+.loginBG {
+    background-position: center;
+    background-size: cover;
+    background-image: url('../assets/loginBG.jpg');
+}
+
 #nprogress .bar {
     background: #1064ff !important;
     height: 2px !important;

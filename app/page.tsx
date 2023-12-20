@@ -1,7 +1,4 @@
-import Header from "../components/header";
-import Content from "../components/content";
-import { Suspense } from "react";
-import UserProvider from "../components/userProvider";
+import Login from "../components/login";
 
 // import { API_BASE_URL } from "../constant/publicURL";
 
@@ -16,11 +13,8 @@ export default async function Home() {
     // const questions = await getQuestions()
 
     return (
-        <UserProvider>
-            <Header isHomePage={true} />
-            <Suspense>
-                <Content />
-            </Suspense>
-        </UserProvider>
+        <div className="bg-cover bg-center h-screen w-screen loginBG">
+            <Login />
+        </div>
     )
 }
