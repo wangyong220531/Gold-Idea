@@ -4,24 +4,31 @@ import Header from "../../../components/header"
 import Avator from "../../../assets/avator.jpg"
 import DetailMid from "../../../components/detailMid"
 import UserProvider from "../../../components/userProvider"
+import { User } from "../../../components/detailFirstSection"
 export interface Unit {
     id: number
     unitNo: string
     unitName: string
 }
 
-const userDemo = {
+const userDemo: User = {
     id: 0,
     avator: Avator,
     userName: "王勇",
     policeNo: "082xxx",
     phone: "19942372693",
-    unitId: "黄码派出所",
+    unitId: 1,
     commentId: 1,
     unit: {
         id: 1,
         unitNo: "0000",
         unitName: "黄码派出所"
+    },
+    role: {
+        id: 1,
+        roleName: "普通民警",
+        alias: "ORDINARY_POLICE",
+        isDeleted: false
     }
 }
 

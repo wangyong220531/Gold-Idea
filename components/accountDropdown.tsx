@@ -1,4 +1,5 @@
 import Image, { StaticImageData } from "next/image"
+import PersonalHomepageIcon from "../assets/personalHomepageIcon.png"
 import ConcernedsIcon from "../assets/concernedsIcon.png"
 import CollectionsIcon from "../assets/collectionsIcon.png"
 import LogoutIcon from "../assets/logoutIcon.png"
@@ -13,16 +14,21 @@ interface AccountDropdownListItem {
 const accountDropdownListItems: AccountDropdownListItem[] = [
     {
         id: "000",
+        content: "我的主页",
+        icon: PersonalHomepageIcon
+    },
+    {
+        id: "001",
         content: "我的关注",
         icon: ConcernedsIcon
     },
     {
-        id: "001",
+        id: "002",
         content: "我的收藏",
         icon: CollectionsIcon
     },
     {
-        id: "002",
+        id: "003",
         content: "退出",
         icon: LogoutIcon
     }
@@ -33,7 +39,11 @@ export function AccountDropdown() {
     const router = useRouter()
 
     function itemClick(item: AccountDropdownListItem) {
-        if (item.id === "002") {
+        if(item.id === "000") {
+            router.push("/personalHomepage")
+            return
+        }
+        if (item.id === "003") {
             router.push("/")
             return
         }

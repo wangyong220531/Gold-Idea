@@ -13,7 +13,7 @@ const fetcher = async ({ url, policeNo }: { url: string, policeNo: string }) => 
     if (res.status !== 200) throw new Error("获取用户信息出错！")
     const data = await res.json()
     return data
-};
+}
 
 const userInfo: User = {
     id: 1,
@@ -25,9 +25,15 @@ const userInfo: User = {
     commentId: 1,
     unit: {
         id: 1,
-        unitName: "公安局",
+        unitName: "黄码派出所",
         unitNo: "12333"
     },
+    role: {
+        id: 1,
+        roleName: "普通民警",
+        alias: "ORDINARY_POLICE",
+        isDeleted: false
+    }
 }
 
 

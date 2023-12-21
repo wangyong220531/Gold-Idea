@@ -21,6 +21,16 @@ body {
     background-image: url('../assets/loginBG.jpg');
 }
 
+.loginBG {
+    background-position: center;
+    background-size: cover;
+    background-image: url('../assets/loginBG.jpg');
+}
+
+.ip-backdrop-blur {
+    backdrop-filter: blur(2px);
+}
+
 #nprogress .bar {
     background: #1064ff !important;
     height: 2px !important;

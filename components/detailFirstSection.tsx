@@ -20,6 +20,15 @@ export const AvatorMap: Record<string, StaticImageData> = {
     "王勇": WangyongAvator
 }
 
+export interface Role {
+    id: number
+    roleName: string
+    alias: "ORDINARY_POLICE" | "ADMINISTRATOR"
+    isDeleted: boolean
+    deletedByUserId?: number
+    isDeletedBy?: User
+}
+
 export interface User {
     id: number
     avator: StaticImageData
@@ -29,6 +38,7 @@ export interface User {
     unitId: number
     commentId: number
     unit: Unit
+    role: Role
 }
 
 export interface QuestionDetail {

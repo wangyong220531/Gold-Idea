@@ -61,19 +61,25 @@ model User {
   collections     Collections[]
   attentions      Attentions[]
   unitId          Int
-  unit            Unit?
+  unit            Unit          @relation(fields: [unitId], references: [id])
   deleteQuestions Question[]    @relation("DeleteQuestions")
   deleteComments  Comment[]     @relation("DeleteComments")
+  roleId          Int
+  role            Role          @relation(fields: [roleId], references: [id])
+  deleteRoles     Role[]        @relation("DeleteRoles")
+
+  @@map("users")
 }
 
 model Unit {
-  unitId     Int      @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   unitNo     String
   unitName   String
-  userId     Int      @unique
-  user       User     @relation(fields: [userId], references: [id])
+  users      User[]
   createTime DateTime @default(now())
   updateTime DateTime @default(now()) @updatedAt
+
+  @@map("units")
 }
 
 model Collections {
@@ -98,4 +104,18 @@ model Attentions {
   updateTime DateTime @default(now()) @updatedAt
 
   @@unique([userId, questionId])
+}
+
+model Role {
+  id              Int      @id @default(autoincrement())
+  roleName        String
+  alias           String
+  users           User[]
+  isDelete        Boolean  @default(false)
+  deletedByUserId Int?
+  deletedBy       User?    @relation("DeleteRoles", fields: [deletedByUserId], references: [id])
+  createTime      DateTime @default(now())
+  updateTime      DateTime @default(now()) @updatedAt
+
+  @@map("roles")
 }
