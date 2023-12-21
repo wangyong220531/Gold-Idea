@@ -1,6 +1,7 @@
 "use client"
 import { useRouter } from 'next/navigation';
-import React, {  useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useUser } from '../app/lib/userContext';
 
 export default function Login() {
 
@@ -9,12 +10,13 @@ export default function Login() {
     const [captchaTimeout, setCaptchaTimeout] = useState(0)
     const [captchaButtonDisabled, setCaptchaButtonDisabled] = useState(false)
     const router = useRouter()
+    const { updatePoliceNo } = useUser()
 
     useEffect(() => {
-        if(captchaTimeout > 0 && captchaTimeout < 60) {
+        if (captchaTimeout > 0 && captchaTimeout < 60) {
             setCaptchaButtonDisabled(true)
         }
-        if (captchaTimeout === 0){
+        if (captchaTimeout === 0) {
             setCaptchaButtonDisabled(false)
             return
         }
@@ -33,8 +35,9 @@ export default function Login() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        // const res =  updatePoliceNo(username)
+        // if(!res) return
         router.push("/home")
-        console.log('提交的用户名和密码:', { username, password });
     };
 
     return (

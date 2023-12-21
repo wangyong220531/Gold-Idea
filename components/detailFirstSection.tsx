@@ -26,7 +26,7 @@ export interface User {
     userName: string
     policeNo: string
     phone: string
-    unitId: string
+    unitId: number
     commentId: number
     unit: Unit
 }

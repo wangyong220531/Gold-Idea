@@ -3,6 +3,7 @@ import { User } from "../../components/detailFirstSection"
 
 export interface UserContextProps {
     userInfo: User
+    updatePoliceNo: (policeNo: string) => User
 }
 
 const UserContext = createContext<UserContextProps | null>(null)

@@ -1,4 +1,5 @@
 import Login from "../components/login";
+import UserProvider from "../components/userProvider";
 
 // import { API_BASE_URL } from "../constant/publicURL";
 
@@ -13,8 +14,10 @@ export default async function Home() {
     // const questions = await getQuestions()
 
     return (
-        <div className="bg-cover bg-center h-screen w-screen loginBG">
-            <Login />
-        </div>
+        <UserProvider>
+            <div className="bg-cover bg-center h-screen w-screen loginBG">
+                <Login />
+            </div>
+        </UserProvider>
     )
 }

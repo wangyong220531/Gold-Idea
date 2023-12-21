@@ -1,31 +1,50 @@
 "use client"
-import { useEffect } from 'react';
-import { useSWRConfig } from 'swr';
+import { useEffect, useState } from 'react';
+import useSWR, { useSWRConfig } from 'swr';
 import UserContext from '../app/lib/userContext';
-import Avator from "../assets/avator.jpg"
+import { User } from './detailFirstSection';
+import Avtor from "../assets/avator.jpg"
 
-const userDemo = {
+const fetcher = async ({ url, policeNo }: { url: string, policeNo: string }) => {
+    const res = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify({ policeNo })
+    });
+    if (res.status !== 200) throw new Error("获取用户信息出错！")
+    const data = await res.json()
+    return data
+};
+
+const userInfo: User = {
     id: 1,
-    avator: Avator,
+    avator: Avtor,
     userName: "王勇",
-    policeNo: "082xxx",
-    phone: "19942372693",
-    unitId: "黄码派出所",
+    policeNo: "082111",
+    phone: "12345678901",
+    unitId: 1,
     commentId: 1,
     unit: {
         id: 1,
-        unitNo: "0000",
-        unitName: "黄码派出所"
-    }
+        unitName: "公安局",
+        unitNo: "12333"
+    },
 }
+
 
 export default function UserProvider({ children }: { children: React.ReactNode }) {
 
+    const [policeNo, setPoliceNo] = useState("")
+    const { data, error } = useSWR({ url: '/api/fetchUserInfo', policeNo }, fetcher)
     const { mutate } = useSWRConfig();
 
     useEffect(() => {
-    }, []);
+    }, [data, error]);
 
-    return <UserContext.Provider value={{ userInfo: userDemo }}>{children}</UserContext.Provider>;
-};
+    function updatePoliceNo(newPoliceNo: string) {
+        setPoliceNo(newPoliceNo)
+        return data
+    }
+
+    return <UserContext.Provider value={{ userInfo: userInfo, updatePoliceNo }}>{children}</UserContext.Provider>;
+}
 

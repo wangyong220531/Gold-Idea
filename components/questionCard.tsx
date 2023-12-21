@@ -30,6 +30,8 @@ export default function QuestionCard(props: QuestionCardProps) {
     useEffect(() => {
         isCollectedJudge()
         isAttentionedJudge()
+        console.log(33,userInfo);
+        
     }, [collections, attentions])
 
     function isCollectedJudge() {
