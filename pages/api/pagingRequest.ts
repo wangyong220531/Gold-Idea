@@ -39,8 +39,6 @@ export default async function pagingRequest(req: NextApiRequest, res: NextApiRes
         if (!pagingRequestRes) return
         res.status(200).json(pagingRequestRes)
     } catch (error) {
-        console.log(error);
-        
         res.status(400).json({ message: "分页请求出错！" })
     }
 }
