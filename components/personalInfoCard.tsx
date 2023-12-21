@@ -30,7 +30,7 @@ export default function PersonalInfoCard() {
                     <div>手机号：{userInfo.phone}</div>
                 </div>
             </div>
-            <div className='h-[50px] w-[200px] flex justify-center items-center rounded border-blue-600 border-2 text-blue-600 text-xl cursor-pointer'>编辑个人资料</div>
+            <div className='h-[50px] w-[180px] flex justify-center items-center rounded border-blue-600 border-2 text-blue-600 text-xl cursor-pointer'>编辑个人资料</div>
         </div>
     </div>
 }
