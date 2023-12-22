@@ -50,8 +50,8 @@ VS Code + DBeaver
 
 微信
 
-![alt](/assets/WechatMoneyRecevingQRCode.jpg)
+![alt](/assets/WechatMoneyRecevingQRCode.jpg){:width="300px" height="200px"}
 
 支付宝
 
-![alt](/assets/AlipayMoneyRecevingQRCode.jpg)
+![alt](/assets/AlipayMoneyRecevingQRCode.jpg){:width="300px" height="200px"}
