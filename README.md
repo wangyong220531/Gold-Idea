@@ -14,7 +14,7 @@ yarn dev
 
 ## 技术栈
 
-Next.js + React Hooks + Prisma + SQLite + TailwindCSS + SWR
+Next.js + React Hooks + TypeScript + Prisma + SQLite + TailwindCSS + SWR
 
 ## 开发工具
 
