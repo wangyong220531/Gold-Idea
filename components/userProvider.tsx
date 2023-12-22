@@ -29,8 +29,8 @@ const userInfo: User = {
         unitNo: "12333"
     },
     role: {
-        id: 1,
-        roleName: "普通民警",
+        id: 2,
+        roleName: "管理员",
         alias: "ORDINARY_POLICE",
         isDeleted: false
     }

@@ -3,12 +3,19 @@ import Image from 'next/image'
 import WangYongAvator from '../assets/avator.jpg'
 import { useUser } from '../app/lib/userContext'
 import IPLocationIcon from "../assets/IPLocationIcon.png"
+import { useEffect } from 'react'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 export default function PersonalInfoCard() {
 
     const { userInfo } = useUser()
 
-    return <div className="w-[1200px] h-[800px] bg-white relative">
+    useEffect(() => {
+        NProgress.done()
+    },[])
+
+    return <div className="w-[1200px] h-[460px] bg-white relative">
         <div className="w-full h-[300px] loginBG relative cursor-pointer">
             <div className="absolute right-4 bottom-4 text-gray-200 bg-black border-none bg-opacity-40 hover:bg-opacity-70 py-2 px-4 border border-gray-400 rounded shadow ip-backdrop-blur flex items-center gap-x-1">
                 <Image src={IPLocationIcon} alt={'IP位置图标'} width={20} height={10} />

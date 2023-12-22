@@ -4,6 +4,8 @@ import ConcernedsIcon from "../assets/concernedsIcon.png"
 import CollectionsIcon from "../assets/collectionsIcon.png"
 import LogoutIcon from "../assets/logoutIcon.png"
 import { useRouter } from "next/navigation"
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 interface AccountDropdownListItem {
     id: string
@@ -39,6 +41,7 @@ export function AccountDropdown() {
     const router = useRouter()
 
     function itemClick(item: AccountDropdownListItem) {
+        NProgress.start()
         if(item.id === "000") {
             router.push("/personalHomepage")
             return

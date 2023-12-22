@@ -43,7 +43,7 @@ export default function Header(props: HeaderProps) {
     return (
         <Fragment>
             <div className="w-full h-20 pl-10 pr-24 bg-white fixed top-0 flex z-10 items-center cursor-pointer shadow-sm justify-between" >
-                <Link className="text-3xl font-semibold text-blue-700" href={"/"}>金点子”深海孵化器“</Link>
+                <Link className="text-3xl font-semibold text-blue-700" href={"/home"}>金点子”深海孵化器“</Link>
                 <div className="flex gap-x-12">
                     <div className="flex gap-x-2">
                         <Search />
