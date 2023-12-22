@@ -46,5 +46,12 @@ VS Code + DBeaver
 
 ![alt](/assets/PersonalHomepageScreenshot.jpg)
 
+## Buy Me A Coffee
 
+微信
 
+![alt](/assets/WechatMoneyRecevingQRCode.jpg)
+
+支付宝
+
+![alt](/assets/AlipayMoneyRecevingQRCode.jpg)
