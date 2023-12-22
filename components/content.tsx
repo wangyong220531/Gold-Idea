@@ -5,6 +5,8 @@ import { sortByCommentsCount } from "../utils/questionSort";
 import { useEffect, useState } from "react";
 import { pagingRequest } from "../pages/api";
 import UserProvider from "./userProvider";
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 export default function Content() {
 
@@ -13,6 +15,7 @@ export default function Content() {
     const [pageSize, setPageSize] = useState(10)
 
     useEffect(() => {
+        NProgress.done()
         init()
     }, [pageNo])
 

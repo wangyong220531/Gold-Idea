@@ -95,7 +95,7 @@ export default function QuestionCard(props: QuestionCardProps) {
             showSpinner: false,
             easing: 'ease',
             speed: 500,
-        });
+        })
     }
 
     return (

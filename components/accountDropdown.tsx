@@ -42,6 +42,12 @@ export function AccountDropdown() {
 
     function itemClick(item: AccountDropdownListItem) {
         NProgress.start()
+        NProgress.configure({
+            minimum: 0.1,
+            showSpinner: false,
+            easing: 'ease',
+            speed: 500,
+        })
         if(item.id === "000") {
             router.push("/personalHomepage")
             return
